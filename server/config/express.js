@@ -4,14 +4,17 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 const cors = require('cors')
-
+const methodOverride = require('method-override')
 
 module.exports = (config, app) => {
   app.set('view engine', 'pug')
   app.set('views', config.rootPath + 'server/views')
 
   app.use(cookieParser())
-  app.use(bodyParser())
+  // app.use(bodyParser())
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(methodOverride('_method'))
   app.use(session({
     secret: 'neshto-taino!@#$%',
     resave: true,
