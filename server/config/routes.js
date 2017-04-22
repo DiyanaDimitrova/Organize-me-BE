@@ -13,6 +13,7 @@ module.exports = (app) => {
   app.get('/category/all', controllers.category.getAll)
   app.put('/category/update/:id', controllers.category.update)
   app.delete('/category/delete/:id', controllers.category.delete)
+  app.post('/event/add', controllers.event.create)
 
   app.all('*', (req, res) => {
     res.status(404)

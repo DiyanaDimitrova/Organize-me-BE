@@ -12,8 +12,8 @@ module.exports = (config, app) => {
 
   app.use(cookieParser())
   // app.use(bodyParser())
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json({limit: '50mb'}))
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, type: 'application/x-www-form-urlencoding' }))
   app.use(methodOverride('_method'))
   app.use(session({
     secret: 'neshto-taino!@#$%',
@@ -26,7 +26,6 @@ module.exports = (config, app) => {
     if (req.user) {
       res.locals.currentUser = req.user
     }
-
     next()
   })
   app.use(cors())

@@ -5,7 +5,7 @@ let rootPath = path.normalize(path.join(__dirname, '/../../'))
 module.exports = {
   development: {
     rootPath: rootPath,
-    db: 'mongodb://exam:exam@ds029824.mlab.com:29824/instagram-system',
+    db: 'mongodb://didi:didi@ds113841.mlab.com:13841/organize-me',
     port: 3001
   },
   production: {
