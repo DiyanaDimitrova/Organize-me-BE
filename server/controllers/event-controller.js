@@ -13,7 +13,9 @@ module.exports = {
       title: req.body.title,
       date: req.body.dateValue,
       time: req.body.hourValue,
-      place: req.body.place
+      place: req.body.place,
+      capacity: req.body.capacity,
+      details: req.body.details
     }
     let filename = req.body.file
     let type = req.body.type
