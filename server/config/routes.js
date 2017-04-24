@@ -4,16 +4,22 @@ const auth = require('../config/auth')
 module.exports = (app) => {
   app.get('/', controllers.home.index)
   app.get('/about', controllers.home.about)
+
   app.post('/users/create', controllers.users.create)
   app.post('/users/authenticate', controllers.users.authenticate)
   app.post('/users/logout', controllers.users.logout)
   app.get('/admins/all', auth.isInRole('Admin'), controllers.users.adminAll)
   app.post('/admins/add', auth.isInRole('Admin'), controllers.users.adminAdd)
+
   app.post('/category/add', controllers.category.create)
   app.get('/category/all', controllers.category.getAll)
   app.put('/category/update/:id', controllers.category.update)
   app.delete('/category/delete/:id', controllers.category.delete)
+
   app.post('/event/add', controllers.event.create)
+  app.get('/event/all', controllers.event.getAll)
+  app.put('/event/update/:id', controllers.event.update)
+  app.delete('/event/delete/:id', controllers.event.delete)
 
   app.all('*', (req, res) => {
     res.status(404)
