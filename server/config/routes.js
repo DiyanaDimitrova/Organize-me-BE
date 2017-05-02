@@ -5,22 +5,27 @@ module.exports = (app) => {
   app.get('/', controllers.home.index)
   app.get('/about', controllers.home.about)
 
+// user routes
   app.post('/users/create', controllers.users.create)
   app.post('/users/authenticate', controllers.users.authenticate)
   app.post('/users/logout', controllers.users.logout)
   app.get('/admins/all', auth.isInRole('Admin'), controllers.users.adminAll)
   app.post('/admins/add', auth.isInRole('Admin'), controllers.users.adminAdd)
 
+// category routes
   app.post('/category/add', controllers.category.create)
   app.get('/category/all', controllers.category.getAll)
   app.put('/category/update/:id', controllers.category.update)
   app.delete('/category/delete/:id', controllers.category.delete)
 
+// event routes
   app.post('/event/add', controllers.event.create)
   app.get('/event/all', controllers.event.getAll)
   app.put('/event/update/:id', controllers.event.update)
   app.delete('/event/delete/:id', controllers.event.delete)
-
+  app.get('/event/image/:id', controllers.event.getImage)
+  app.get('/event/details/:id', controllers.event.view)
+  
   app.all('*', (req, res) => {
     res.status(404)
     res.send('Not Found')

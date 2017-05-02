@@ -6,6 +6,7 @@ let conn = mongoose.connection
 let Grid = require('gridfs-stream')
 Grid.mongo = mongoose.mongo
 let gfs = Grid(conn.db)
+// var ObjectID = mongoose.mongo.BSONPure.ObjectID
 
 module.exports = {
   create: (req, res) => {
@@ -109,16 +110,21 @@ module.exports = {
        res.json({message: err})
      })
   },
-  view: (req, res) => {
+  getImage: (req, res) => {
     Event
-      .findById(req.params.id)
-      .then(event => {
+      .findOne({
+        _id: req.params.id
+      }, (err, event) => {
+        if (err) {
+          console.log(err)
+          res.json({message: err})
+        }
         gfs.files.findOne({
-          _id: event.fileId
+          _id: mongoose.Types.ObjectId(event.fileId)
         }, (err, file) => {
+          console.log('File' + JSON.stringify(file))
           if (err) {
             console.log(err)
-            res.json({message: err})
           }
           res.writeHead(200, {
             'Content-Type': file.contentType
@@ -127,21 +133,27 @@ module.exports = {
             _id: event.fileId
           })
           readstream.on('data', (data) => {
-            res.json({event: event, image: data})
+            res.write(data)
           })
           readstream.on('end', () => {
             res.end()
           })
           readstream.on('error', (err) => {
             console.log('An error occurred!', err)
-            res.json({message: err})
             throw err
           })
         })
       })
-      .catch((err) => {
-        console.log(err)
-        res.json({message: err})
-      })
+  },
+  view: (req, res) => {
+    Event
+     .findById(req.params.id)
+     .then((event) => {
+       res.json({event: event})
+     })
+     .catch((err) => {
+       console.log(err)
+       res.json({message: err})
+     })
   }
 }
