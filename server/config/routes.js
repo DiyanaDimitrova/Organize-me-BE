@@ -1,3 +1,4 @@
+const busboyBodyParser = require('busboy-body-parser')
 const controllers = require('../controllers')
 const auth = require('../config/auth')
 
@@ -19,13 +20,13 @@ module.exports = (app) => {
   app.delete('/category/delete/:id', controllers.category.delete)
 
 // event routes
-  app.post('/event/add', controllers.event.create)
+  app.post('/event/add', busboyBodyParser({limit: '5mb'}), controllers.event.create)
   app.get('/event/all', controllers.event.getAll)
   app.put('/event/update/:id', controllers.event.update)
   app.delete('/event/delete/:id', controllers.event.delete)
   app.get('/event/image/:id', controllers.event.getImage)
   app.get('/event/details/:id', controllers.event.view)
-  
+
   app.all('*', (req, res) => {
     res.status(404)
     res.send('Not Found')

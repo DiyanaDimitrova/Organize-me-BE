@@ -131,19 +131,20 @@ module.exports = {
           res.writeHead(200, {
             'Content-Type': file.contentType
           })
-          var readstream = gfs.createReadStream({
+          let readStream = gfs.createReadStream({
             _id: event.fileId
           })
-          readstream.on('data', (data) => {
-            res.write(data)
-          })
-          readstream.on('end', () => {
-            res.end()
-          })
-          readstream.on('error', (err) => {
-            console.log('An error occurred!', err)
-            throw err
-          })
+          readStream.pipe(res)
+          // readstream.on('data', (data) => {
+          //   res.write(data)
+          // })
+          // readstream.on('end', () => {
+          //   res.end()
+          // })
+          // readstream.on('error', (err) => {
+          //   console.log('An error occurred!', err)
+          //   throw err
+          // })
         })
       })
   },
