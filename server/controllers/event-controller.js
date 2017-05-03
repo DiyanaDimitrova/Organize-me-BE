@@ -111,9 +111,11 @@ module.exports = {
      })
   },
   getImage: (req, res) => {
+    let eventId = mongoose.Types.ObjectId(req.params.id)
+
     Event
       .findOne({
-        _id: req.params.id
+        _id: eventId
       }, (err, event) => {
         if (err) {
           console.log(err)
