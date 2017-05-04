@@ -27,6 +27,8 @@ module.exports = (app) => {
   app.get('/event/image/:id', controllers.event.getImage)
   app.get('/event/details/:id', controllers.event.view)
   app.put('/event/attend/:id', controllers.event.attendEvent)
+  app.get('/event/listInvited/:id', controllers.event.listInvited)
+
 
 // code routes
   // app.get('/codes/avaible', controllers.codes.avaible)

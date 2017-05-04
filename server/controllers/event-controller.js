@@ -180,5 +180,16 @@ module.exports = {
         console.log(err)
         res.json({message: err})
       })
+  },
+  listInvited: (req, res) => {
+    Event
+    .findById(req.params.id)
+    .then((event) => {
+      res.json({going: event.goingPeople, interested: event.interestedPeople, notGoing: event.notGoingPeople})
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json({message: err})
+    })
   }
 }
