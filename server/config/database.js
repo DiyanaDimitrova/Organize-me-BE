@@ -21,5 +21,5 @@ module.exports = (config) => {
   require('../data/User').seedAdminUser()
   require('../data/Category')
   require('../data/Event')
-
+  require('../data/Code')
 }

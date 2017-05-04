@@ -26,6 +26,12 @@ module.exports = (app) => {
   app.delete('/event/delete/:id', controllers.event.delete)
   app.get('/event/image/:id', controllers.event.getImage)
   app.get('/event/details/:id', controllers.event.view)
+  app.put('/event/attend/:id', controllers.event.attendEvent)
+
+// code routes
+  // app.get('/codes/avaible', controllers.codes.avaible)
+  app.post('/codes/changeReservedStatus/:id', controllers.code.changeReservedStatus)
+  app.post('/codes/create', controllers.code.create)
 
   app.all('*', (req, res) => {
     res.status(404)

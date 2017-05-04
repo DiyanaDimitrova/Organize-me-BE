@@ -158,5 +158,27 @@ module.exports = {
        console.log(err)
        res.json({message: err})
      })
+  },
+  attendEvent: (req, res) => {
+    let attend = null
+    if (req.body.type === 'going') {
+      attend = { goingPeople: req.body.username }
+    } else if (req.body.type === 'interested') {
+      attend = { interestedPeople: req.body.username }
+    } else if (req.body.type === 'notGoing') {
+      attend = { notGoingPeople: req.body.username }
+    }
+    Event
+      .findByIdAndUpdate(req.params.id, {
+        $push: attend
+      })
+      .exec()
+      .then(() => {
+        res.json({message: 'OK'})
+      })
+      .catch((err) => {
+        console.log(err)
+        res.json({message: err})
+      })
   }
 }

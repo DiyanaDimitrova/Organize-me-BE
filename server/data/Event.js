@@ -14,8 +14,7 @@ let eventSchema = mongoose.Schema({
   details: {type: String, required: requiredValidationMessage},
   goingPeople: [ String ],
   interestedPeople: [ String ],
-  notGoingPeople: [ String ],
-  invitedPeople: [ String ]
+  notGoingPeople: [ String ]
 })
 
 mongoose.model('Event', eventSchema)
