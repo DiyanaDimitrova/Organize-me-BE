@@ -1,6 +1,19 @@
-// let Code = require('mongoose').model('Code')
-let Code = require('../data/Code')
+let Event = require('mongoose').model('Event')
+let Code = require('mongoose').model('Code')
+
+
 module.exports = {
+  listInvited: (req, res) => {
+    Event
+   .findById(req.params.id)
+  .then((event) => {
+    res.json({invitedPeople: event.invitedPeople})
+  })
+  .catch((err) => {
+    console.log(err)
+    res.json({message: err})
+  })
+  },
   create: (req, res) => {
     let code = req.body
     Code

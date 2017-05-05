@@ -160,17 +160,17 @@ module.exports = {
      })
   },
   attendEvent: (req, res) => {
-    let attend = null
-    if (req.body.type === 'going') {
-      attend = { goingPeople: req.body.username }
-    } else if (req.body.type === 'interested') {
-      attend = { interestedPeople: req.body.username }
-    } else if (req.body.type === 'notGoing') {
-      attend = { notGoingPeople: req.body.username }
-    }
+    // let attend = null
+    // if (req.body.type === 'going') {
+    //   attend = { goingPeople: req.body.username }
+    // } else if (req.body.type === 'interested') {
+    //   attend = { interestedPeople: req.body.username }
+    // } else if (req.body.type === 'notGoing') {
+    //   attend = { notGoingPeople: req.body.username }
+    // }
     Event
       .findByIdAndUpdate(req.params.id, {
-        $push: attend
+        $push: {invitedPeople: req.body}
       })
       .exec()
       .then(() => {
@@ -180,16 +180,5 @@ module.exports = {
         console.log(err)
         res.json({message: err})
       })
-  },
-  listInvited: (req, res) => {
-    Event
-    .findById(req.params.id)
-    .then((event) => {
-      res.json({going: event.goingPeople, interested: event.interestedPeople, notGoing: event.notGoingPeople})
-    })
-    .catch((err) => {
-      console.log(err)
-      res.json({message: err})
-    })
   }
 }
