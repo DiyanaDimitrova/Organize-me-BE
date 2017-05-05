@@ -10,7 +10,6 @@ let gfs = Grid(conn.db)
 
 module.exports = {
   create: (req, res) => {
-    console.log(req.user)
     let newEvent = {
       title: req.body.title,
       date: req.body.dateValue,
@@ -28,17 +27,14 @@ module.exports = {
       mode: 'w',
       content_type: type
     })
-    console.log(newEvent)
     writeStream.on('close', (file) => {
       newEvent.fileId = file._id
-      console.log(file._id)
       Event.create(newEvent)
           .then(event => {
-            console.log(JSON.stringify(event))
             res.json({message: 'OK'})
           })
           .catch(err => {
-            console.log(JSON.stringify(err))
+            console.log(err)
             res.json({message: err})
           })
     })
@@ -56,7 +52,6 @@ module.exports = {
       })
   },
   update: (req, res) => {
-    console.log(req.user)
     let title = req.body.title
     let date = req.body.dateValue
     let time = req.body.hourValue
@@ -73,7 +68,6 @@ module.exports = {
     })
     writeStream.on('close', (file) => {
       let fileId = file._id
-      console.log(file._id)
       Event
         .findByIdAndUpdate(req.params.id, {
           $set: {
@@ -124,7 +118,6 @@ module.exports = {
         gfs.files.findOne({
           _id: mongoose.Types.ObjectId(event.fileId)
         }, (err, file) => {
-          console.log('File' + JSON.stringify(file))
           if (err) {
             console.log(err)
           }

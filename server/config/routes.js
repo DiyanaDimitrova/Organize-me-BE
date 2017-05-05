@@ -30,8 +30,10 @@ module.exports = (app) => {
 // code routes
   // app.get('/codes/avaible', controllers.codes.avaible)
   app.get('/code/listInvited/:id', controllers.code.listInvited)
-  app.post('/code/changeReservedStatus/:id', controllers.code.changeReservedStatus)
-  app.post('/code/create', controllers.code.create)
+  app.post('/code/send', controllers.code.sendCode)
+
+  // app.post('/code/changeReservedStatus/:id', controllers.code.changeReservedStatus)
+  // app.post('/code/create', controllers.code.create)
 
   app.all('*', (req, res) => {
     res.status(404)

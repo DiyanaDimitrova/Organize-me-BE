@@ -1,6 +1,6 @@
 let Event = require('mongoose').model('Event')
 let Code = require('mongoose').model('Code')
-
+let User = require('mongoose').model('User')
 
 module.exports = {
   listInvited: (req, res) => {
@@ -13,6 +13,18 @@ module.exports = {
     console.log(err)
     res.json({message: err})
   })
+  },
+  sendCode: (req, res) => {
+    console.log(req.body)
+    User
+    .find({ username: { $in: req.body.usersToSendCode } })
+    .then((users) => {
+      console.log(users)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json({message: err})
+    })
   },
   create: (req, res) => {
     let code = req.body
