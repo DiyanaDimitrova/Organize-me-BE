@@ -26,7 +26,7 @@ let createCryptedObj = (req, obj) => {
     'email': obj.email
   }
   let hw = encrypt(JSON.stringify(cryptString))
-  // console.log('HW' + hw)
+  console.log('HW' + hw)
   return hw
   // req.session.cryptString = hw
   // console.log('encrypted string created !')
@@ -54,7 +54,21 @@ module.exports = {
        .then((users) => {
          users.forEach(user => {
           //  console.log('USER' + JSON.stringify(user))
-           email.sendTicket(createCryptedObj(req, user), user, event)
+           let cryptedString = createCryptedObj(req, user)
+           Code
+           .create({
+             code: cryptedString,
+             isUsed: false,
+             user: user._id,
+             event: event._id
+           })
+           .then(code => {
+             console.log(code)
+           })
+           .catch(err => {
+             console.log(err)
+           })
+           email.sendTicket(cryptedString, user, event)
          })
        })
        .catch((err) => {
@@ -66,6 +80,36 @@ module.exports = {
        console.log(err)
        res.json({message: err})
      })
+  },
+  scanCode: (req, res) => {
+    console.log(JSON.stringify(req.body))
+    Code
+    .findOneAndUpdate({code: req.body.scanedCode}, {$set: {isUsed: true}})
+    .then((code) => {
+      console.log('CODE' + JSON.stringify(code))
+      User
+      .findById(code.user)
+      .then((user) => {
+        Event
+        .findById(code.event)
+        .then((event) => {
+          console.log('EVENT' + JSON.stringify(event))
+          res.json({message: user.firstName + ' ' + user.lastName + ' ' + event.title})
+        })
+        .catch((err) => {
+          console.log(err)
+          res.json({message: err})
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+        res.json({message: err})
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json({message: err})
+    })
   }
   // create: (req, res) => {
   //   let code = req.body

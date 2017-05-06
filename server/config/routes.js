@@ -31,6 +31,8 @@ module.exports = (app) => {
   // app.get('/codes/avaible', controllers.codes.avaible)
   app.get('/code/listInvited/:id', controllers.code.listInvited)
   app.post('/code/send', controllers.code.sendCode)
+  app.post('/code/scan', controllers.code.scanCode)
+
 
   // app.post('/code/changeReservedStatus/:id', controllers.code.changeReservedStatus)
   // app.post('/code/create', controllers.code.create)

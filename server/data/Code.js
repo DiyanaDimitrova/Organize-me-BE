@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 let requiredValidationMessage = '{PATH} is required'
 
 let codeSchema = mongoose.Schema({
@@ -12,17 +11,13 @@ let codeSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
-  reuseble: {
-    type: Boolean,
-    default: false
+  user: {
+    type: String,
+    required: requiredValidationMessage
   },
-  isReserved: {
-    type: Boolean,
-    default: false
-  },
-  limit: {
-    type: Number,
-    default: 1
+  event : {
+    type: String,
+    required: requiredValidationMessage
   }
 })
 
