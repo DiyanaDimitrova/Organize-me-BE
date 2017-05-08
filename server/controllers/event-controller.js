@@ -128,13 +128,14 @@ module.exports = {
             _id: event.fileId
           })
           readStream.pipe(res)
-          // readstream.on('data', (data) => {
+          // console.log('DIDDIID')
+          // readStream.on('data', (data) => {
           //   res.write(data)
           // })
-          // readstream.on('end', () => {
+          // readStream.on('end', () => {
           //   res.end()
           // })
-          // readstream.on('error', (err) => {
+          // readStream.on('error', (err) => {
           //   console.log('An error occurred!', err)
           //   throw err
           // })
