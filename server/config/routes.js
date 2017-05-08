@@ -16,6 +16,7 @@ module.exports = (app) => {
 // category routes
   app.post('/category/add', controllers.category.create)
   app.get('/category/all', controllers.category.getAll)
+  app.get('/category/:id', controllers.category.getCategory)
   app.put('/category/update/:id', controllers.category.update)
   app.delete('/category/delete/:id', controllers.category.delete)
 

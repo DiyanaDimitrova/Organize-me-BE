@@ -48,5 +48,15 @@ module.exports = {
        console.log(err)
        res.json({message: err})
      })
+  },
+  getCategory: (req, res) => {
+    Category
+      .findById(req.params.id)
+      .then((category) => {
+        res.json({category: category})
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
