@@ -23,6 +23,7 @@ module.exports = (app) => {
 // event routes
   app.post('/event/add', busboyBodyParser({limit: '5mb'}), controllers.event.create)
   app.get('/event/all', controllers.event.getAll)
+  app.get('/event/:id', controllers.event.getEvent)
   app.put('/event/update/:id', controllers.event.update)
   app.delete('/event/delete/:id', controllers.event.delete)
   app.get('/event/image/:id', controllers.event.getImage)

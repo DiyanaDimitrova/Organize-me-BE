@@ -174,5 +174,15 @@ module.exports = {
         console.log(err)
         res.json({message: err})
       })
+  },
+  getEvent: (req, res) => {
+    Event
+      .findById(req.params.id)
+      .then((event) => {
+        res.json({event: event})
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
