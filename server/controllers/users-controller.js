@@ -46,13 +46,15 @@ module.exports = {
   },
   logout: (req, res) => {
     req.logout()
-    res.json({message: 'OK1'})
+    res.json({
+      message: 'OK1',
+      success: true
+    })
   },
   usersAll: (req, res) => {
     User
       .find()
       .then(users => {
-        console.log(users)
         res.json({users: users})
       })
       .catch((err) => {

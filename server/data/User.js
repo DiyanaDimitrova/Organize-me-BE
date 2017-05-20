@@ -10,9 +10,17 @@ let userSchema = mongoose.Schema({
   email: {type: String, required: requiredValidationMessage},
   salt: String,
   hashedPass: String,
-  roles: [String]
+  roles: [{
+    type: String,
+    enum: ['Normal','Admin']
+  }]
 })
-
+userSchema.pre('save',function(next) {
+  if (this.roles.length == 0) {
+    this.roles.push('Normal')
+  }
+  next()
+})
 userSchema.method({
   authenticate: function (password) {
     let inputHashedPassword = encryption.generateHashedPassword(this.salt, password)
@@ -31,7 +39,6 @@ module.exports.seedAdminUser = () => {
     if (users.length === 0) {
       let salt = encryption.generateSalt()
       let hashedPass = encryption.generateHashedPassword(salt, 'Admin12')
-
       User.create({
         username: 'Admin',
         firstName: 'Admin',
