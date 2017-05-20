@@ -48,10 +48,11 @@ module.exports = {
     req.logout()
     res.json({message: 'OK1'})
   },
-  adminAll: (req, res) => {
+  usersAll: (req, res) => {
     User
-      .find({roles: 'Admin'})
+      .find()
       .then(users => {
+        console.log(users)
         res.json({users: users})
       })
       .catch((err) => {

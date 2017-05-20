@@ -10,8 +10,8 @@ module.exports = (app) => {
   app.post('/users/create', controllers.users.create)
   app.post('/users/authenticate', controllers.users.authenticate)
   app.post('/users/logout', controllers.users.logout)
-  app.get('/admins/all', auth.isInRole('Admin'), controllers.users.adminAll)
-  app.post('/admins/add', auth.isInRole('Admin'), controllers.users.adminAdd)
+  app.get('/users/all', controllers.users.usersAll) // auth.isInRole('Admin'), 
+  app.post('/admins/add', controllers.users.adminAdd) // auth.isInRole('Admin'),
 
 // category routes
   app.post('/category/add', controllers.category.create)

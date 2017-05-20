@@ -11,6 +11,8 @@ module.exports = (config, app) => {
   app.set('views', config.rootPath + 'server/views')
 
   app.use(cookieParser())
+  app.use(cors())
+
   // app.use(bodyParser())
   app.use(bodyParser.json({limit: '50mb'}))
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, type: 'application/x-www-form-urlencoding' }))
@@ -28,6 +30,5 @@ module.exports = (config, app) => {
     }
     next()
   })
-  app.use(cors())
   app.use(express.static(config.rootPath + 'public'))
 }
