@@ -65,9 +65,8 @@ module.exports = {
     User
       .find({ username: { $in: req.body.usersToMakeAdmin } })
       .then((users) => {
-        console.log('US' + users)
         users.forEach(user => {
-          user.roles.push('Admin')
+          user.roles.push(req.body.type)
           user.save()
         })
         res.json({message: 'OK'})

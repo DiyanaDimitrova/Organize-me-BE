@@ -24,10 +24,11 @@ module.exports = {
   },
   update: (req, res) => {
     let title = req.body.title
+    let user = req.body.user
     console.log(req.body)
     Category
       .findByIdAndUpdate(req.params.id, {
-        $set: { title: title }
+        $set: { title: title, user: user }
       })
       .exec()
       .then(() => {
@@ -39,6 +40,7 @@ module.exports = {
       })
   },
   delete: (req, res) => {
+    console.log(req.body)
     Category
      .findByIdAndRemove(req.params.id)
      .then(() => {

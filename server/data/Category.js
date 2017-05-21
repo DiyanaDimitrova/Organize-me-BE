@@ -7,6 +7,10 @@ let categorySchema = mongoose.Schema({
     type: String,
     required: requiredValidationMessage,
     maxlength: 50
+  },
+  user: {
+    type: String,
+    required: requiredValidationMessage
   }
 })
 
