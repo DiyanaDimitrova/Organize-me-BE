@@ -7,7 +7,7 @@ let dateFormat = require('dateFormat')
 
 let options = {
   auth: {
-    api_key: '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'
+    api_key: process.env.SEND_GRID_KEY
   }
 }
 
