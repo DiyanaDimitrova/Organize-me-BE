@@ -63,19 +63,18 @@ module.exports = {
   },
   adminAdd: (req, res) => {
     User
-      .findOne({username: req.body.username})
-      .then(user => {
-        if (user) {
+      .find({ username: { $in: req.body.usersToMakeAdmin } })
+      .then((users) => {
+        console.log('US' + users)
+        users.forEach(user => {
           user.roles.push('Admin')
           user.save()
-          res.redirect('/')
-        } else {
-          let globalError = 'Please make admin registered user!'
-          res.render('users/add', { globalError: globalError })
-        }
+        })
+        res.json({message: 'OK'})
       })
       .catch((err) => {
         console.log(err)
+        res.json({message: 'Error'})
       })
   }
 }

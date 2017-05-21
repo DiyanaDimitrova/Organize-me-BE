@@ -35,14 +35,14 @@ let createCryptedObj = (req, obj) => {
 module.exports = {
   listInvited: (req, res) => {
     Event
-   .findById(req.params.id)
-  .then((event) => {
-    res.json({invitedPeople: event.invitedPeople})
-  })
-  .catch((err) => {
-    console.log(err)
-    res.json({message: err})
-  })
+      .findById(req.params.id)
+      .then((event) => {
+        res.json({invitedPeople: event.invitedPeople})
+      })
+      .catch((err) => {
+        console.log(err)
+        res.json({message: err})
+      })
   },
   sendCode: (req, res) => {
     console.log(req.body)
