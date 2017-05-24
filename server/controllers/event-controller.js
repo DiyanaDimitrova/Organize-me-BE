@@ -17,7 +17,8 @@ module.exports = {
       place: req.body.place,
       capacity: req.body.capacity,
       details: req.body.details,
-      categoryId: req.body.categoryId
+      categoryId: req.body.categoryId,
+      user: req.body.user
       // creatorId: req.user.username
     }
     let filename = req.body.file
@@ -61,6 +62,7 @@ module.exports = {
     let categoryId = req.body.categoryId
     let filename = req.body.file
     let type = req.body.type
+    let user = req.body.user
     var writeStream = gfs.createWriteStream({
       filename: filename,
       mode: 'w',
@@ -78,7 +80,8 @@ module.exports = {
             fileId: fileId,
             categoryId: categoryId,
             capacity: capacity,
-            details: details
+            details: details,
+            user: user
           }
         })
         .exec()
@@ -94,6 +97,7 @@ module.exports = {
     writeStream.end()
   },
   delete: (req, res) => {
+    console.log('DEL' + JSON.stringify(req.body))
     Event
      .findByIdAndRemove(req.params.id)
      .then(() => {
@@ -179,6 +183,7 @@ module.exports = {
     Event
       .findById(req.params.id)
       .then((event) => {
+        console.log('EVENT' + JSON.stringify(event))
         res.json({event: event})
       })
       .catch((err) => {
