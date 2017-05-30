@@ -15,6 +15,7 @@ module.exports = {
       date: req.body.dateValue,
       time: req.body.hourValue,
       place: req.body.place,
+      city: req.body.city,
       capacity: req.body.capacity,
       details: req.body.details,
       categoryId: req.body.categoryId,
@@ -57,6 +58,7 @@ module.exports = {
     let date = req.body.dateValue
     let time = req.body.hourValue
     let place = req.body.place
+    let city = req.body.city
     let capacity = req.body.capacity
     let details = req.body.details
     let categoryId = req.body.categoryId
@@ -77,6 +79,7 @@ module.exports = {
             date: date,
             time: time,
             place: place,
+            city: city,
             fileId: fileId,
             categoryId: categoryId,
             capacity: capacity,

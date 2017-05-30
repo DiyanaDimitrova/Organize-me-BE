@@ -21,6 +21,11 @@ let eventSchema = mongoose.Schema({
     required: requiredValidationMessage,
     maxlength: 50
   },
+  city: {
+    type: String,
+    required: requiredValidationMessage,
+    maxlength: 50
+  },
   fileId: {
     type: String,
     required: requiredValidationMessage
