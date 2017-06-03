@@ -30,9 +30,6 @@ let eventSchema = mongoose.Schema({
     type: String,
     required: requiredValidationMessage
   },
-  creatorId: {
-    type: String
-  },
   categoryId: {
     type: String
   },
