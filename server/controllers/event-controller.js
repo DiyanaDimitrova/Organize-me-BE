@@ -100,7 +100,6 @@ module.exports = {
     writeStream.end()
   },
   delete: (req, res) => {
-    console.log('DEL' + JSON.stringify(req.body))
     Event
      .findByIdAndRemove(req.params.id)
      .then(() => {
@@ -169,9 +168,11 @@ module.exports = {
     // } else if (req.body.type === 'notGoing') {
     //   attend = { notGoingPeople: req.body.username }
     // }
+    // tags: { $in: ["appliances", "school"] }
+    console.log(req.body)
     Event
-      .findByIdAndUpdate(req.params.id, {
-        $push: {invitedPeople: req.body}
+      .findOneAndUpdate({_id: req.params.id, invitedPeople: {$elemMatch: {username: req.body.username}}}, {
+        $set: { 'invitedPeople.$': req.body}
       })
       .exec()
       .then(() => {
