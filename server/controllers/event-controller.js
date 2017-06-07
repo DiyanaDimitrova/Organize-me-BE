@@ -170,13 +170,40 @@ module.exports = {
     // }
     // tags: { $in: ["appliances", "school"] }
     console.log(req.body)
+
+    // .findOneAndUpdate({_id: req.params.id, invitedPeople: {$elemMatch: {username: req.body.username}}}, {
+    //   $set: { 'invitedPeople.$': req.body}
+    // })
     Event
-      .findOneAndUpdate({_id: req.params.id, invitedPeople: {$elemMatch: {username: req.body.username}}}, {
-        $set: { 'invitedPeople.$': req.body}
-      })
-      .exec()
-      .then(() => {
-        res.json({message: 'OK'})
+      .findById(req.params.id)
+      .then((event) => {
+        let isExists = event.invitedPeople.some((people) => people.username === req.body.username)
+        console.log('INCLUDES' + isExists)
+        if(isExists){
+          Event
+            .findOneAndUpdate({_id: req.params.id, invitedPeople: {$elemMatch: {username: req.body.username}}}, {
+              $set: { 'invitedPeople.$': req.body}
+            })
+            .then(() => {
+              res.json({message: 'OK'})
+            })
+            .catch((err) => {
+              console.log(err)
+              res.json({message: err})
+            })
+        } else {
+            Event
+              .findByIdAndUpdate(req.params.id, {
+                $push: {invitedPeople: req.body}
+              })
+              .then(() => {
+                res.json({message: 'OK'})
+              })
+              .catch((err) => {
+                console.log(err)
+                res.json({message: err})
+              })
+        }
       })
       .catch((err) => {
         console.log(err)
