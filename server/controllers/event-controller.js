@@ -112,7 +112,6 @@ module.exports = {
   },
   getImage: (req, res) => {
     let eventId = mongoose.Types.ObjectId(req.params.id)
-
     Event
       .findOne({
         _id: eventId
@@ -160,20 +159,7 @@ module.exports = {
      })
   },
   attendEvent: (req, res) => {
-    // let attend = null
-    // if (req.body.type === 'going') {
-    //   attend = { goingPeople: req.body.username }
-    // } else if (req.body.type === 'interested') {
-    //   attend = { interestedPeople: req.body.username }
-    // } else if (req.body.type === 'notGoing') {
-    //   attend = { notGoingPeople: req.body.username }
-    // }
-    // tags: { $in: ["appliances", "school"] }
     console.log(req.body)
-
-    // .findOneAndUpdate({_id: req.params.id, invitedPeople: {$elemMatch: {username: req.body.username}}}, {
-    //   $set: { 'invitedPeople.$': req.body}
-    // })
     Event
       .findById(req.params.id)
       .then((event) => {
