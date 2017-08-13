@@ -46,6 +46,7 @@ module.exports = {
   getAll: (req, res) => {
     Event
       .find(req.query)
+      .sort({date: 1})
       .then(events => {
         res.json({events: events})
       })
