@@ -36,7 +36,7 @@ module.exports = {
               res.send({messages: 'Error'})
               return
             }
-            res.send({messages: 'OK', user: {firstName: user.firstName, lastName: user.lastName, username: user.username}})
+            res.send({messages: 'OK', user: {firstName: user.firstName, lastName: user.lastName, username: user.username, roles: user.roles}})
           })
         }
       })
