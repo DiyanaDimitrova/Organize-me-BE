@@ -59,7 +59,7 @@ module.exports = {
     console.log('SALT' + salt)
     console.log('HASH' + hashedPass)
     User
-      .findOneAndUpdate({username: user.password}, {$set: {salt: salt, hashedPass: hashedPass}}, {new:true})
+      .findOneAndUpdate({username: user.username}, {$set: {salt: salt, hashedPass: hashedPass}}, {new: true})
       .then(user => {
         console.log('Updated' + JSON.stringify(user))
         res.json({messages: 'Password changed successful.'})
