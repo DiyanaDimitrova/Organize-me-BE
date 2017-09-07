@@ -51,6 +51,24 @@ module.exports = {
       success: true
     })
   },
+  resetPassword: (req, res) => {
+    console.log(req.body)
+    let user = req.body
+    let salt = encryption.generateSalt()
+    let hashedPass = encryption.generateHashedPassword(salt, user.password)
+    console.log('SALT' + salt)
+    console.log('HASH' + hashedPass)
+    User
+      .findOneAndUpdate({username: user.password}, {$set: {salt: salt, hashedPass: hashedPass}}, {new:true})
+      .then(user => {
+        console.log('Updated' + JSON.stringify(user))
+        res.json({messages: 'Password changed successful.'})
+      })
+      .catch((err) => {
+        res.json({messages: 'Password can not be changed.'})
+        console.log(err)
+      })
+  },
   usersAll: (req, res) => {
     User
       .find()

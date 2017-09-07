@@ -10,6 +10,7 @@ module.exports = (app) => {
   app.post('/users/create', controllers.users.create)
   app.post('/users/authenticate', controllers.users.authenticate)
   app.post('/users/logout', controllers.users.logout)
+  app.post('/users/resetPassword', controllers.users.resetPassword)
   app.get('/users/all', controllers.users.usersAll) // auth.isInRole('Admin'),
   app.post('/admins/add', controllers.users.adminAdd) // auth.isInRole('Admin'),
 
