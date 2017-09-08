@@ -69,6 +69,16 @@ module.exports = {
         console.log(err)
       })
   },
+  getUser: (req, res) => {
+    User
+      .find({ username: req.params.username})
+      .then(user => {
+        res.json({user: user})
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  },
   usersAll: (req, res) => {
     User
       .find()
