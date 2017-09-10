@@ -3,7 +3,7 @@ let sgTransport = require('nodemailer-sendgrid-transport')
 let pdf = require('html-pdf')
 let qr = require('qr-image')
 require('dotenv').config()
-let dateFormat = require('dateFormat')
+let dateFormat = require('dateformat')
 
 let options = {
   auth: {
