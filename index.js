@@ -12,4 +12,4 @@ require('./server/config/routes')(app, passport)
 require('./server/config/passport')()
 
 app.listen(config.port)
-console.log('Express ready!')
+console.log('Express ready!' + config.port)
