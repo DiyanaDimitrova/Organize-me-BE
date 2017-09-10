@@ -29,7 +29,7 @@ module.exports = {
     let emailContent = '<b>Здравей </b>' + name + '<br><p> Благодарим ти за интереса към нашето събитие.' +
                           'Като прикачен файл ще откриеш билет като комплимент от нас.<br> Надяваме се да ти хареса!</p>' +
                           '<p>Научи повече за нас и как осъществяваме събитията си <a href="http://dgty-promo.com/faq/"> тук </a>.</p>' +
-                          '<p>Екипа на Tranc3motion.</p>'
+                          '<p>Екипа на Organize Me.</p>'
     let htmlTicket = '<html><head><meta charset="utf8"></head><body style="">' +
                         '<div style="overflow: hidden; font-family: Arial, Helvetica, sans-serif; border-bottom-style: dashed;">' +
                         '<div style="float:left; width:65%; padding: 0 0 0 20px;">' +
