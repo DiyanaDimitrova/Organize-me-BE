@@ -32,7 +32,7 @@ userSchema.method({
   }
 })
 
-let User = mongoose.model('User', userSchema, 'users')
+let User = mongoose.model('User', userSchema)
 
 module.exports.seedAdminUser = () => {
   User.find({}).then(users => {

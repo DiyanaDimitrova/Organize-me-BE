@@ -11,8 +11,8 @@ module.exports = (app) => {
   app.post('/users/authenticate', controllers.users.authenticate)
   app.post('/users/logout', controllers.users.logout)
   app.post('/users/resetPassword', controllers.users.resetPassword)
-  app.get('/users/:username', controllers.users.getUser) // auth.isInRole('Admin'),
   app.get('/users/all', controllers.users.usersAll) // auth.isInRole('Admin'),
+  app.get('/users/:username', controllers.users.getUser) // auth.isInRole('Admin'),
   app.post('/admins/add', controllers.users.adminAdd) // auth.isInRole('Admin'),
 
 // category routes
