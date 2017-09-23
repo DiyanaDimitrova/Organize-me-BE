@@ -18,8 +18,8 @@ module.exports = (config) => {
 
   db.on('error', err => console.log('Database error: ' + err))
 
-  require('../data/User').seedAdminUser()
-  require('../data/Category')
-  require('../data/Event')
-  require('../data/Code')
+  require('../models/User').seedAdminUser()
+  require('../models/Category')
+  require('../models/Event')
+  require('../models/Code')
 }
