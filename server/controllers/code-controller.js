@@ -45,7 +45,6 @@ module.exports = {
       })
   },
   sendCode: (req, res) => {
-    console.log(req.body)
     Event
      .findById(req.body.eventId)
      .then((event) => {
@@ -53,7 +52,6 @@ module.exports = {
        .find({ username: { $in: req.body.usersToSendCode } })
        .then((users) => {
          users.forEach(user => {
-          //  console.log('USER' + JSON.stringify(user))
            let cryptedString = createCryptedObj(req, user)
            Code
            .create({

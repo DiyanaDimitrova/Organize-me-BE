@@ -4,8 +4,7 @@ let requiredValidationMessage = '{PATH} is required'
 let codeSchema = mongoose.Schema({
   code: {
     type: String,
-    required: requiredValidationMessage,
-    unique: true
+    required: requiredValidationMessage
   },
   isUsed: {
     type: Boolean,

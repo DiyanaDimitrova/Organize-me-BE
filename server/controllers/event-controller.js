@@ -1,12 +1,10 @@
 let Event = require('mongoose').model('Event')
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
-// mongoose.connect('mongodb://didi:didi@ds113841.mlab.com:13841/organize-me')
 let conn = mongoose.connection
 let Grid = require('gridfs-stream')
 Grid.mongo = mongoose.mongo
 let gfs = Grid(conn.db)
-// var ObjectID = mongoose.mongo.BSONPure.ObjectID
 
 module.exports = {
   create: (req, res) => {

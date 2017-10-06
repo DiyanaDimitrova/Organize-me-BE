@@ -18,14 +18,12 @@ let optionsPDF = {
 }
 module.exports = {
   sendTicket: (cryptedString, user, event) => {
-    //  console.log('EVENT ' + JSON.stringify(event))
     let qrSvg = qr.imageSync(cryptedString, { type: 'svg' })
     let date = dateFormat(event.time, 'HH:MM') + ' ' + dateFormat(event.date, 'dddd, mmmm dS, yyyy')
     let artistName = event.title
     let clubName = event.place
     let guestEmail = user.email
     let name = user.firstName + ' ' + user.lastName
-    // let address = 'Sofia, bul. Maria Luiza 126'
     let emailContent = '<b>Здравей </b>' + name + '<br><p> Благодарим ти за интереса към нашето събитие.' +
                           'Като прикачен файл ще откриеш билет като комплимент от нас.<br> Надяваме се да ти хареса!</p>' +
                           '<p>Научи повече за нас и как осъществяваме събитията си <a href="http://dgty-promo.com/faq/"> тук </a>.</p>' +
@@ -53,12 +51,13 @@ module.exports = {
           contentType: 'application/pdf'
         }]
       }
-      // console.log('TICKET' + JSON.stringify(email))
       mailer.sendMail(email, function (err, res) {
         if (err) {
-          console.log('ERR MAIL' + JSON.stringify(err))
+          console.log(err)
+          res.json({message: err})
         }
-        console.log('RES' + JSON.stringify(res))
+        console.log(res)
+        // res.json({message: err})
       })
     })
   }

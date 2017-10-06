@@ -7,13 +7,9 @@ const cors = require('cors')
 const methodOverride = require('method-override')
 
 module.exports = (config, app) => {
-  app.set('view engine', 'pug')
-  app.set('views', config.rootPath + 'server/views')
-
   app.use(cookieParser())
   app.use(cors())
 
-  // app.use(bodyParser())
   app.use(bodyParser.json({limit: '50mb'}))
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, type: 'application/x-www-form-urlencoding' }))
   app.use(methodOverride('_method'))

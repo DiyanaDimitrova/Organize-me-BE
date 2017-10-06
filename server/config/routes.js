@@ -3,8 +3,8 @@ const controllers = require('../controllers')
 const auth = require('../config/auth')
 
 module.exports = (app) => {
-  app.get('/', controllers.home.index)
-  app.get('/about', controllers.home.about)
+  // app.get('/', controllers.home.index)
+  // app.get('/about', controllers.home.about)
 
 // user routes
   app.post('/users/create', controllers.users.create)
