@@ -54,10 +54,10 @@ module.exports = {
       mailer.sendMail(email, function (err, res) {
         if (err) {
           console.log(err)
-          res.json({message: err})
+          // res.json({message: err})
         }
         console.log(res)
-        // res.json({message: err})
+        // res.json({message: 'success'})
       })
     })
   }

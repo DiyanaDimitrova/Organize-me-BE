@@ -45,12 +45,14 @@ module.exports = {
       })
   },
   sendCode: (req, res) => {
+    console.log('REQ Body' + JSON.stringify(req.body))
     Event
      .findById(req.body.eventId)
      .then((event) => {
        User
        .find({ username: { $in: req.body.usersToSendCode } })
        .then((users) => {
+         console.log('USER' +  JSON.stringify(users))
          users.forEach(user => {
            let cryptedString = createCryptedObj(req, user)
            Code
@@ -65,8 +67,10 @@ module.exports = {
            })
            .catch(err => {
              console.log(err)
+             res.json({message: err})
            })
            email.sendTicket(cryptedString, user, event)
+           res.json({message: 'OK'})
          })
        })
        .catch((err) => {
