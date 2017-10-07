@@ -96,11 +96,11 @@ module.exports = {
         .findById(code.event)
         .then((event) => {
           console.log('EVENT' + JSON.stringify(event))
-          res.json({message: user.firstName + ' ' + user.lastName + ' ' + event.title})
+          res.json({message: "GUEST: " + user.firstName + " " + user.lastName + " EVENT: " + event.title})
         })
         .catch((err) => {
           console.log(err)
-          res.json({message: err})
+          res.json({message: 'Ticket is not valid' })
         })
       })
       .catch((err) => {
